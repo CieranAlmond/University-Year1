@@ -1,0 +1,492 @@
+--------------
+DROP DATABASE IF EXISTS world_news_corp_cms
+--------------
+
+Query OK, 4 rows affected (0.39 sec)
+
+--------------
+CREATE DATABASE world_news_corp_cms
+--------------
+
+Query OK, 1 row affected (0.09 sec)
+
+--------------
+CREATE TABLE Author (
+
+	NI BIGINT NOT NULL,
+
+	FirstName VARCHAR (30) NOT NULL,
+
+	Surname VARCHAR (30) NOT NULL,
+
+	Gender ENUM ('M', 'F') NOT NULL,
+
+	Age INT UNSIGNED NOT NULL,
+
+	Salary DECIMAL (8,2),
+
+	Country VARCHAR (30) NOT NULL,
+	PRIMARY KEY (NI)
+
+)
+--------------
+
+Query OK, 0 rows affected (0.14 sec)
+
+--------------
+CREATE TABLE NewsArticle (
+
+	NewsArticleID BIGINT,
+	Topic VARCHAR (20) NOT NULL,
+	Title VARCHAR (50) NOT NULL,
+
+	PublishDate DATE NOT NULL,
+
+	Content VARCHAR (250) NOT NULL,
+
+	Country VARCHAR (20) NOT NULL,
+
+	NI BIGINT NOT NULL,
+	PRIMARY KEY (NewsArticleID)
+)
+--------------
+
+Query OK, 0 rows affected (0.15 sec)
+
+--------------
+CREATE TABLE Comments (
+
+        CommentID BIGINT UNSIGNED NOT NULL,
+	NewsArticleID BIGINT,
+	Username VARCHAR (20) NOT NULL,
+
+	TimeSet TIME NOT NULL,
+
+	Content VARCHAR (100) NOT NULL,
+	PRIMARY KEY (CommentID)
+)
+--------------
+
+Query OK, 0 rows affected (0.14 sec)
+
+--------------
+CREATE TABLE Likes (
+
+	LikeID INT,
+	NewsArticleID BIGINT,
+	TimeSet TIME NOT NULL,
+
+	Publish_date DATE NOT NULL,
+
+	PRIMARY KEY (LikeID)
+
+)
+--------------
+
+Query OK, 0 rows affected (0.14 sec)
+
+--------------
+INSERT INTO Author VALUES (1987234920, 'John','Smith','M',34,20000,'England')
+--------------
+
+Query OK, 1 row affected (0.03 sec)
+
+--------------
+INSERT INTO Author VALUES (9348098234, 'Tom','Potter','M',32,32000,'Scotland')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Author VALUES (4564547547, 'Jack','Kingman','M',23,14000,'India')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Author VALUES (5654674575, 'Chris','Trethick','M',45,24000,'India')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Author VALUES (5675675675, 'Dave','Carter','M',56,40000,'Ireland')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Author VALUES (7775656765, 'Ian','Packwood','M',33,19000,'England')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Author VALUES (8964334324, 'Lucy','Teague','F',18,20000,'America')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Author VALUES (6612355667, 'Jane','Connor','F',19,49000,'France')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Author VALUES (3456456457, 'Mary','Van Schmidt','F',42,32000,'France')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Author VALUES (1875432325, 'Liz','Fogarty','F',53,34000,'America')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Author VALUES (1134576877, 'Emma','Baker','F',37,20000,'England')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Author VALUES (2345457654, 'Anne','Nuttley','F',43,34000,'Indonesia')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO NewsArticle VALUES (1,'Politics','Europe crackdown on jihadist network',CURDATE(),'Police target 17 people in raids in several European countries on suspicion of links to a jihadist network.','England',1987234920)
+--------------
+
+Query OK, 1 row affected (0.02 sec)
+
+--------------
+INSERT INTO NewsArticle VALUES (2,'Politics','Modi visit historic opportunity for UK',CURDATE(),'Indian prime minister arrives in the UK for a three day visit, described by David Cameron as a historic opportunity for both countries.','India',9348098234)
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO NewsArticle VALUES (3,'Politics','Sweden brings in migrant border checks',CURDATE(),'Sweden brings in temporary border checks to control the flow of migrants into the country, as an EU Africa summit continues.','Sweden',5675675675)
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO NewsArticle VALUES (4,'Financial','Apple apologises after racism outcry',CURDATE(),'Apple apologises to six schoolboys who were asked to leave one of their shops in Australia, in what the students described as a racist incident.','Australia',7775656765)
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO NewsArticle VALUES (5,'Financial','HMRC reveals tax office shake-up',CURDATE(),'The UKs tax authority will close 137 local offices and replace them with 13 regional centres, raising fears over job losses.','England',1134576877)
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO NewsArticle VALUES (6,'Entertainment','Film star visits cafe for homeless',CURDATE(),'Hollywood star George Clooney visits a sandwich shop which helps homeless people during a visit to Edinburgh.','Scotland',1987234920)
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO NewsArticle VALUES (7,'Financial','Rolls-Royce shares dive on profit woes',CURDATE(),'Shares in aerospace group RollsRoyce sink after it warns that its profits will be hit by sharply weaker demand.','England',1134576877)
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO NewsArticle VALUES (8,'Politics','Ex-MPs GBP13,700 on shredding and skips',CURDATE(),'The Independent Parliamentary Standards Authority releases expenses claims for 182 MPs who left the Commons at the election - with GBP705,000 spent on closing down their offices.','England',1134576877)
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO NewsArticle VALUES (9,'Science','Action needed to protect UK coast',CURDATE(),'The UK is ignoring known risks of flood and erosion at the coast and immediate action is needed to manage the threats, the National Trust warns.','England',3456456457)
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO NewsArticle VALUES (10,'Science','Venus twin excites astronomers',CURDATE(),'Astronomers hunting distant worlds say they have made one of their most significant discoveries to date, what could be a kind of hot twin to our Venus.','America',2345457654)
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Comments VALUES (1,1,'2evan2',CURTIME(),'great article!')
+--------------
+
+Query OK, 1 row affected (0.03 sec)
+
+--------------
+INSERT INTO Comments VALUES (2,1,'blinkenlicten',CURTIME(),'very interesting read!')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Comments VALUES (3,3,'axepear',CURTIME(),'what a load of rubbish')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Comments VALUES (4,4,'cinnamon123',CURTIME(),'inspiring read')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Comments VALUES (5,5,'shojalace',CURTIME(),'wow, what a twist. I cant believe it')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Comments VALUES (6,7,'piero',CURTIME(),'didnt rate it')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Comments VALUES (7,7,'mac008',CURTIME(),'commenting is very fun')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Comments VALUES (8,10,'lee',CURTIME(),'tá, mo chara')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Comments VALUES (9,9,'weirdybeardyman',CURTIME(),'whens the next article?')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Comments VALUES (10,10,'avantar',CURTIME(),'journalism at its finest')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Comments VALUES (11,3,'drax0',CURTIME(),'jag blir så irriterad just nu')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Comments VALUES (12,2,'melkor',CURTIME(),'mitt liev är en meme')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Comments VALUES (13,5,'axepear',CURTIME(),'jag kommer nu')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Comments VALUES (14,6,'09willisc',CURTIME(),'wie gehts')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Comments VALUES (15,1,'bayorn',CURTIME(),'die nacht ist is mir')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Likes VALUES (1,1,NOW(),CURDATE())
+--------------
+
+Query OK, 1 row affected (0.03 sec)
+
+--------------
+INSERT INTO Likes VALUES (2,2,NOW(),CURDATE())
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Likes VALUES (3,3,NOW(),CURDATE())
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Likes VALUES (4,4,NOW(),CURDATE())
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Likes VALUES (5,5,NOW(),CURDATE())
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Likes VALUES (6,6,NOW(),CURDATE())
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Likes VALUES (7,7,NOW(),CURDATE())
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Likes VALUES (8,8,NOW(),CURDATE())
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Likes VALUES (9,9,NOW(),CURDATE())
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Likes VALUES (10,9,NOW(),CURDATE())
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Likes VALUES (11,8,NOW(),CURDATE())
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Likes VALUES (12,7,NOW(),CURDATE())
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Likes VALUES (13,6,NOW(),CURDATE())
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Likes VALUES (14,6,NOW(),CURDATE())
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO Likes VALUES (15,4,NOW(),CURDATE())
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+SELECT * FROM Author
+--------------
+
++------------+-----------+-------------+--------+-----+----------+-----------+
+| NI         | FirstName | Surname     | Gender | Age | Salary   | Country   |
++------------+-----------+-------------+--------+-----+----------+-----------+
+| 1134576877 | Emma      | Baker       | F      |  37 | 20000.00 | England   |
+| 1875432325 | Liz       | Fogarty     | F      |  53 | 34000.00 | America   |
+| 1987234920 | John      | Smith       | M      |  34 | 20000.00 | England   |
+| 2345457654 | Anne      | Nuttley     | F      |  43 | 34000.00 | Indonesia |
+| 3456456457 | Mary      | Van Schmidt | F      |  42 | 32000.00 | France    |
+| 4564547547 | Jack      | Kingman     | M      |  23 | 14000.00 | India     |
+| 5654674575 | Chris     | Trethick    | M      |  45 | 24000.00 | India     |
+| 5675675675 | Dave      | Carter      | M      |  56 | 40000.00 | Ireland   |
+| 6612355667 | Jane      | Connor      | F      |  19 | 49000.00 | France    |
+| 7775656765 | Ian       | Packwood    | M      |  33 | 19000.00 | England   |
+| 8964334324 | Lucy      | Teague      | F      |  18 | 20000.00 | America   |
+| 9348098234 | Tom       | Potter      | M      |  32 | 32000.00 | Scotland  |
++------------+-----------+-------------+--------+-----+----------+-----------+
+12 rows in set (0.00 sec)
+
+--------------
+SELECT * FROM NewsArticle
+--------------
+
++---------------+---------------+-----------------------------------------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+------------+
+| NewsArticleID | Topic         | Title                                   | PublishDate | Content                                                                                                                                                                            | Country   | NI         |
++---------------+---------------+-----------------------------------------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+------------+
+|             1 | Politics      | Europe crackdown on jihadist network    | 2016-12-09  | Police target 17 people in raids in several European countries on suspicion of links to a jihadist network.                                                                        | England   | 1987234920 |
+|             2 | Politics      | Modi visit historic opportunity for UK  | 2016-12-09  | Indian prime minister arrives in the UK for a three day visit, described by David Cameron as a historic opportunity for both countries.                                            | India     | 9348098234 |
+|             3 | Politics      | Sweden brings in migrant border checks  | 2016-12-09  | Sweden brings in temporary border checks to control the flow of migrants into the country, as an EU Africa summit continues.                                                       | Sweden    | 5675675675 |
+|             4 | Financial     | Apple apologises after racism outcry    | 2016-12-09  | Apple apologises to six schoolboys who were asked to leave one of their shops in Australia, in what the students described as a racist incident.                                   | Australia | 7775656765 |
+|             5 | Financial     | HMRC reveals tax office shake-up        | 2016-12-09  | The UKs tax authority will close 137 local offices and replace them with 13 regional centres, raising fears over job losses.                                                       | England   | 1134576877 |
+|             6 | Entertainment | Film star visits cafe for homeless      | 2016-12-09  | Hollywood star George Clooney visits a sandwich shop which helps homeless people during a visit to Edinburgh.                                                                      | Scotland  | 1987234920 |
+|             7 | Financial     | Rolls-Royce shares dive on profit woes  | 2016-12-09  | Shares in aerospace group RollsRoyce sink after it warns that its profits will be hit by sharply weaker demand.                                                                    | England   | 1134576877 |
+|             8 | Politics      | Ex-MPs GBP13,700 on shredding and skips | 2016-12-09  | The Independent Parliamentary Standards Authority releases expenses claims for 182 MPs who left the Commons at the election - with GBP705,000 spent on closing down their offices. | England   | 1134576877 |
+|             9 | Science       | Action needed to protect UK coast       | 2016-12-09  | The UK is ignoring known risks of flood and erosion at the coast and immediate action is needed to manage the threats, the National Trust warns.                                   | England   | 3456456457 |
+|            10 | Science       | Venus twin excites astronomers          | 2016-12-09  | Astronomers hunting distant worlds say they have made one of their most significant discoveries to date, what could be a kind of hot twin to our Venus.                            | America   | 2345457654 |
++---------------+---------------+-----------------------------------------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+------------+
+10 rows in set (0.00 sec)
+
+--------------
+SELECT * FROM Comments
+--------------
+
++-----------+---------------+-----------------+----------+--------------------------------------+
+| CommentID | NewsArticleID | Username        | TimeSet  | Content                              |
++-----------+---------------+-----------------+----------+--------------------------------------+
+|         1 |             1 | 2evan2          | 16:22:43 | great article!                       |
+|         2 |             1 | blinkenlicten   | 16:22:43 | very interesting read!               |
+|         3 |             3 | axepear         | 16:22:43 | what a load of rubbish               |
+|         4 |             4 | cinnamon123     | 16:22:43 | inspiring read                       |
+|         5 |             5 | shojalace       | 16:22:43 | wow, what a twist. I cant believe it |
+|         6 |             7 | piero           | 16:22:43 | didnt rate it                        |
+|         7 |             7 | mac008          | 16:22:43 | commenting is very fun               |
+|         8 |            10 | lee             | 16:22:43 | tá, mo chara                         |
+|         9 |             9 | weirdybeardyman | 16:22:43 | whens the next article?              |
+|        10 |            10 | avantar         | 16:22:43 | journalism at its finest             |
+|        11 |             3 | drax0           | 16:22:43 | jag blir så irriterad just nu        |
+|        12 |             2 | melkor          | 16:22:43 | mitt liev är en meme                 |
+|        13 |             5 | axepear         | 16:22:43 | jag kommer nu                        |
+|        14 |             6 | 09willisc       | 16:22:43 | wie gehts                            |
+|        15 |             1 | bayorn          | 16:22:43 | die nacht ist is mir                 |
++-----------+---------------+-----------------+----------+--------------------------------------+
+15 rows in set (0.00 sec)
+
+--------------
+SELECT * FROM Likes
+--------------
+
++--------+---------------+----------+--------------+
+| LikeID | NewsArticleID | TimeSet  | Publish_date |
++--------+---------------+----------+--------------+
+|      1 |             1 | 16:22:43 | 2016-12-09   |
+|      2 |             2 | 16:22:43 | 2016-12-09   |
+|      3 |             3 | 16:22:43 | 2016-12-09   |
+|      4 |             4 | 16:22:43 | 2016-12-09   |
+|      5 |             5 | 16:22:43 | 2016-12-09   |
+|      6 |             6 | 16:22:43 | 2016-12-09   |
+|      7 |             7 | 16:22:43 | 2016-12-09   |
+|      8 |             8 | 16:22:43 | 2016-12-09   |
+|      9 |             9 | 16:22:43 | 2016-12-09   |
+|     10 |             9 | 16:22:43 | 2016-12-09   |
+|     11 |             8 | 16:22:43 | 2016-12-09   |
+|     12 |             7 | 16:22:43 | 2016-12-09   |
+|     13 |             6 | 16:22:43 | 2016-12-09   |
+|     14 |             6 | 16:22:43 | 2016-12-09   |
+|     15 |             4 | 16:22:43 | 2016-12-09   |
++--------+---------------+----------+--------------+
+15 rows in set (0.00 sec)
+
+Bye

@@ -1,0 +1,88 @@
+--------------
+SELECT FirstName, Surname, Age
+FROM Author
+--------------
+
++-----------+-------------+-----+
+| FirstName | Surname     | Age |
++-----------+-------------+-----+
+| Emma      | Baker       |  37 |
+| Liz       | Fogarty     |  53 |
+| John      | Smith       |  34 |
+| Anne      | Nuttley     |  43 |
+| Mary      | Van Schmidt |  42 |
+| Jack      | Kingman     |  23 |
+| Chris     | Trethick    |  45 |
+| Dave      | Carter      |  56 |
+| Jane      | Connor      |  19 |
+| Ian       | Packwood    |  33 |
+| Lucy      | Teague      |  18 |
+| Tom       | Potter      |  32 |
++-----------+-------------+-----+
+12 rows in set (0.00 sec)
+
+--------------
+SELECT AVG(Age) 
+AS AgeAverage 
+FROM Author 
+WHERE Gender = 'M'
+--------------
+
++------------+
+| AgeAverage |
++------------+
+|    37.1667 |
++------------+
+1 row in set (0.00 sec)
+
+--------------
+SELECT FirstName, Surname, Salary
+FROM Author
+WHERE Salary = (
+SELECT MAX(Salary)
+AS HighestSalary 
+FROM Author)
+--------------
+
++-----------+---------+----------+
+| FirstName | Surname | Salary   |
++-----------+---------+----------+
+| Jane      | Connor  | 49000.00 |
++-----------+---------+----------+
+1 row in set (0.00 sec)
+
+--------------
+SELECT FirstName, Surname
+FROM Author
+WHERE NI NOT IN (
+SELECT NI
+FROM NewsArticle)
+--------------
+
++-----------+----------+
+| FirstName | Surname  |
++-----------+----------+
+| Liz       | Fogarty  |
+| Jack      | Kingman  |
+| Chris     | Trethick |
+| Jane      | Connor   |
+| Lucy      | Teague   |
++-----------+----------+
+5 rows in set (0.00 sec)
+
+--------------
+SELECT FirstName, Surname, Title, Topic
+FROM NewsArticle, Author
+WHERE (Content LIKE '%David Cameron%' OR Content LIKE '%George Clooney%')
+AND NewsArticle.NI = Author.NI
+--------------
+
++-----------+---------+----------------------------------------+---------------+
+| FirstName | Surname | Title                                  | Topic         |
++-----------+---------+----------------------------------------+---------------+
+| Tom       | Potter  | Modi visit historic opportunity for UK | Politics      |
+| John      | Smith   | Film star visits cafe for homeless     | Entertainment |
++-----------+---------+----------------------------------------+---------------+
+2 rows in set (0.00 sec)
+
+Bye
